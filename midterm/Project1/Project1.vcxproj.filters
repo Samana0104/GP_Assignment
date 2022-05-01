@@ -22,11 +22,17 @@
     <Filter Include="Source Files\src\object">
       <UniqueIdentifier>{df0a804e-3e7c-4e88-8469-33bafa6f06f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\src\object\player">
-      <UniqueIdentifier>{235062ba-ad97-4fb9-99b4-419f546d6a08}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\src\phase">
       <UniqueIdentifier>{0d9e45a8-db49-4923-88a9-06ed151786be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\phase">
+      <UniqueIdentifier>{cf0e6b87-e3e9-4d71-a38c-fa007f5c655b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\object">
+      <UniqueIdentifier>{af46f71c-1400-4e58-8f53-4b7108b46638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\exception">
+      <UniqueIdentifier>{af313cc1-0bf6-4545-bcfc-d02bbd3ac74d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,14 +42,20 @@
     <ClCompile Include="MainHandler.cpp">
       <Filter>Source Files\src\handler</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\src\object\player</Filter>
-    </ClCompile>
     <ClCompile Include="Exception.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
     <ClCompile Include="GamePhaseIntro.cpp">
       <Filter>Source Files\src\phase</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePhaseEnd.cpp">
+      <Filter>Source Files\src\phase</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePhaseMain.cpp">
+      <Filter>Source Files\src\phase</Filter>
+    </ClCompile>
+    <ClCompile Include="Marine.cpp">
+      <Filter>Source Files\src\object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,23 +65,23 @@
     <ClInclude Include="ConstantDecl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GamePhaseImp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GamePhaseMain.h">
+      <Filter>Header Files\phase</Filter>
     </ClInclude>
     <ClInclude Include="GamePhaseIntro.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\phase</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePhaseImp.h">
+      <Filter>Header Files\phase</Filter>
     </ClInclude>
     <ClInclude Include="GamePhaseEnd.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\phase</Filter>
     </ClInclude>
-    <ClInclude Include="GamePhaseWorking.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Marine.h">
+      <Filter>Header Files\object</Filter>
     </ClInclude>
     <ClInclude Include="Exception.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\exception</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

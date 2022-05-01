@@ -11,17 +11,20 @@ private:
 	SDL_Window* gameWindow;
 	SDL_Renderer* gameRender;
 	GamePhaseImp * gamePhase[GAME_PHASE::COUNT];
+	GAME_PHASE PRESENT_PHASE;
+
 	double gameFramePerSecond, gameFrameVarForCalculation;
 	bool gameStartCheck; // 1 = be working, 0 = not be working
-	
+
 	MainHandler& operator=(const MainHandler&) { };
 	void SDL_initSystemMix() const;
 	void CreateGamePhase();
-	void initGameData() const;
 	bool delayProcessAboutFrame();
 	void handleGameEvents();
+	void handleGameEventType(const SDL_Event& eventType);
 	void gameStop();
-	void whenPressTheKeyboard() const;
+	void whenPressTheMouse(const SDL_Event& eventType);
+	void changeGamePhase();
 	void updateGameData();
 	void drawGameRender();
 public:

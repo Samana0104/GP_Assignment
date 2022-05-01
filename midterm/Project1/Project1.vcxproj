@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="GamePhaseEnd.cpp" />
     <ClCompile Include="GamePhaseIntro.cpp" />
+    <ClCompile Include="GamePhaseMain.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainHandler.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Marine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConstantDecl.h" />
@@ -31,9 +33,9 @@
     <ClInclude Include="GamePhaseEnd.h" />
     <ClInclude Include="GamePhaseImp.h" />
     <ClInclude Include="GamePhaseIntro.h" />
-    <ClInclude Include="GamePhaseWorking.h" />
+    <ClInclude Include="GamePhaseMain.h" />
     <ClInclude Include="MainHandler.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Marine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -133,10 +135,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\bhb0104\Desktop\document\Game Programming\CU_GP_CourseExamples-master\Include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\bhb0104\Desktop\document\Game Programming\CU_GP_CourseExamples-master\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

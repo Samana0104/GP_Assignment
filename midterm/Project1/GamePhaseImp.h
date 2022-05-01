@@ -1,13 +1,13 @@
 #pragma once
 
-#include "SDL.h"
-
 class GamePhaseImp
 {
-public:
+protected:
 	GamePhaseImp() { }
+public:
 	virtual ~GamePhaseImp() { };
 	virtual void updateGameData() = 0;
-	virtual void drawGameRender(SDL_Renderer*) = 0;
-	virtual void whenPressTheKeyboard() = 0;
+	virtual void drawGameRender() = 0;
+	virtual void startGamePhase() = 0;
+	virtual void pauseGamePhase() = 0;
 };

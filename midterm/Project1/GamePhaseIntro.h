@@ -1,20 +1,26 @@
 #pragma once
 
-#include "GamePhaseImp.h"
 #include "SDL.h"
+#include "SDL_mixer.h"
+#include "GamePhaseImp.h"
 
 class GamePhaseIntro : public GamePhaseImp
 {
 private:
 	SDL_Texture* backgroundTexture;
-	SDL_Rect backgroundRect;
+	SDL_Rect backgroundTexturePos;
+	SDL_Renderer* gameRender;
+	Mix_Music* backgroundMusic;
 
-	void createBackgroundTexture(SDL_Renderer* gameRender);
+	void createBackgroundTexture();
+	void createBackgroundMusic();
+
 public:
 	explicit GamePhaseIntro(SDL_Renderer* _gameRender);
-	~GamePhaseIntro();
+	virtual ~GamePhaseIntro();
 
 	virtual void updateGameData();
-	virtual void drawGameRender(SDL_Renderer* _gameRender);
-	virtual void whenPressTheKeyboard();
+	virtual void drawGameRender();
+	virtual void startGamePhase();
+	virtual void pauseGamePhase();
 };

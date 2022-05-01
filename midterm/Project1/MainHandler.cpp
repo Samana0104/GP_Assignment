@@ -4,9 +4,11 @@
 #include "SDL_mixer.h"
 #include "ConstantDecl.h"
 #include "GamePhaseIntro.h"
+#include "GamePhaseMain.h"
+#include "GamePhaseEnd.h"
 
 MainHandler::MainHandler(const char* _gameName, const SDL_Rect& _windowInfo, const double& _gameFramePerSecond)
-	: gameFramePerSecond(_gameFramePerSecond), gameFrameVarForCalculation(0.0), gameStartCheck(false)
+	: PRESENT_PHASE(GAME_PHASE::INTRO), gameFramePerSecond(_gameFramePerSecond), gameFrameVarForCalculation(0.0), gameStartCheck(false)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	this->gameWindow = SDL_CreateWindow(_gameName, _windowInfo.x, _windowInfo.y, _windowInfo.w, _windowInfo.h, 0);
@@ -14,7 +16,6 @@ MainHandler::MainHandler(const char* _gameName, const SDL_Rect& _windowInfo, con
 	SDL_initSystemMix();
 	TTF_Init();
 	CreateGamePhase();
-	initGameData();
 }
 
 void MainHandler::SDL_initSystemMix() const 
@@ -34,16 +35,14 @@ void MainHandler::SDL_initSystemMix() const
 void MainHandler::CreateGamePhase()
 {
 	this->gamePhase[GAME_PHASE::INTRO] = new GamePhaseIntro(this->gameRender);
-}
-
-void MainHandler::initGameData() const
-{
-
+	this->gamePhase[GAME_PHASE::MAIN] = new GamePhaseMain(this->gameRender);
+	this->gamePhase[GAME_PHASE::END] = new GamePhaseEnd(this->gameRender);
 }
 
 void MainHandler::gameStart()
 {
 	this->gameStartCheck = true;
+	this->gamePhase[this->PRESENT_PHASE]->startGamePhase();
 
 	while (isGameStart())
 	{
@@ -78,19 +77,20 @@ void MainHandler::handleGameEvents()
 {
 	SDL_Event event;
 
-	if(SDL_PollEvent(&event))
+	if (SDL_PollEvent(&event))
+		handleGameEventType(event);
+}
+
+void MainHandler::handleGameEventType(const SDL_Event& eventType)
+{
+	switch (eventType.type)
 	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			gameStop();
-			break;
-		case SDL_KEYDOWN:
-			whenPressTheKeyboard();
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			break;
-		}
+	case SDL_QUIT:
+		gameStop();
+		break;
+	case SDL_MOUSEBUTTONDOWN:
+		whenPressTheMouse(eventType);
+		break;
 	}
 }
 
@@ -99,25 +99,48 @@ void MainHandler::gameStop()
 	this->gameStartCheck = false;
 }
 
-void MainHandler::whenPressTheKeyboard() const
+void MainHandler::whenPressTheMouse(const SDL_Event& eventType)
 {
+	if (eventType.button.button == SDL_BUTTON_RIGHT)
+		changeGamePhase();
+}
 
+void MainHandler::changeGamePhase()
+{
+	this->gamePhase[this->PRESENT_PHASE]->pauseGamePhase();
+
+	switch (this->PRESENT_PHASE)
+	{
+	case GAME_PHASE::INTRO:
+		this->PRESENT_PHASE = GAME_PHASE::MAIN;
+		break;
+	case GAME_PHASE::MAIN:
+		this->PRESENT_PHASE = GAME_PHASE::END;
+		break;
+	case GAME_PHASE::END:
+		this->PRESENT_PHASE = GAME_PHASE::INTRO;
+		break;
+	}
+
+	this->gamePhase[this->PRESENT_PHASE]->startGamePhase(); // pause phase -> change phase -> start phase
 }
 
 void MainHandler::updateGameData()
 {
-
+	this->gamePhase[this->PRESENT_PHASE]->updateGameData();
 }
 
 void MainHandler::drawGameRender()
 {
-	this->gamePhase[GAME_PHASE::INTRO]->drawGameRender(this->gameRender);
-
-	SDL_RenderPresent(this->gameRender);
+	this->gamePhase[this->PRESENT_PHASE]->drawGameRender();
 }
 
 MainHandler::~MainHandler()
 {
+	for (int i = 0; i < GAME_PHASE::COUNT; i++)
+		delete this->gamePhase[i];
+
+	Mix_CloseAudio();
 	SDL_DestroyWindow(this->gameWindow);
 	SDL_Quit();
 }
