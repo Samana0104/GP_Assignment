@@ -13,9 +13,9 @@ enum GAME_PHASE
 class GamePhaseInterface
 {
 protected:
-	GamePhaseInterface() { };
+	GamePhaseInterface() { }
 public:
-	virtual ~GamePhaseInterface() { };
+	virtual ~GamePhaseInterface() { }
 
 	virtual void initPhaseDatas() = 0;
 	virtual void handleEvents(const SDL_Event&) = 0;

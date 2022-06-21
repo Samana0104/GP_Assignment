@@ -26,7 +26,7 @@ void MainHandler::gameStart()
 	this->isPlayingGame = true;
 	while (this->isPlayingGame)
 	{
-		SDL_Delay(10);
+		SDL_Delay(1);
 		changeGamePhase();
 
 		if(getPresentGameEvent(gameEvent))

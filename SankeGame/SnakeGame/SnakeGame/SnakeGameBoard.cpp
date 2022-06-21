@@ -4,7 +4,7 @@
 #include "SnakeGameBoard.h"
 
 SnakeGameBoard::SnakeGameBoard(const int& _xBoardSize, const int& _yBoardSize) : _isDyingSnake(false), snakePreMoveType(SNAKE_MOVE_TYPE::STOP),
-snakePresentMoveType(SNAKE_MOVE_TYPE::STOP), snakeDelay(35.0), blockTimer(200.0), blockMove(30.0), checkKey(false),
+snakePresentMoveType(SNAKE_MOVE_TYPE::STOP), snakeDelay(300.0), blockTimer(2000.0), blockMove(250.0), checkKey(false),
 xBoardSize(_xBoardSize+2), yBoardSize(_yBoardSize+2) // +2를 하면 계산이 편함
 {
 	Point snakeP;
@@ -234,7 +234,7 @@ void SnakeGameBoard::checkSnakeMove()
 			this->gameBoardArray[(--this->snake.end())->yPos + 1][(--this->snake.end())->xPos + 1] = BOARD_TYPE::CAN_MOVE;
 			this->snake.pop_back();
 		}
-		else if (this->gameBoardArray[yPos][xPos + 1] == BOARD_TYPE::ITEM)
+		else
 		{
 			this->gameBoardArray[yPos][xPos + 1] = BOARD_TYPE::CAN_MOVE;
 			generateItem();
@@ -256,7 +256,7 @@ void SnakeGameBoard::checkSnakeMove()
 			this->gameBoardArray[(--this->snake.end())->yPos + 1][(--this->snake.end())->xPos + 1] = BOARD_TYPE::CAN_MOVE;
 			this->snake.pop_back();
 		}
-		else if (this->gameBoardArray[yPos + 1][xPos + 2] == BOARD_TYPE::ITEM)
+		else
 		{
 			this->gameBoardArray[yPos + 1][xPos + 2] = BOARD_TYPE::CAN_MOVE;
 			generateItem();
@@ -278,7 +278,7 @@ void SnakeGameBoard::checkSnakeMove()
 			this->gameBoardArray[(--this->snake.end())->yPos + 1][(--this->snake.end())->xPos + 1] = BOARD_TYPE::CAN_MOVE;
 			this->snake.pop_back();
 		}
-		else if (this->gameBoardArray[yPos + 1][xPos] == BOARD_TYPE::ITEM)
+		else
 		{
 			this->gameBoardArray[yPos + 1][xPos] = BOARD_TYPE::CAN_MOVE;
 			generateItem();
@@ -300,7 +300,7 @@ void SnakeGameBoard::checkSnakeMove()
 			this->gameBoardArray[(--this->snake.end())->yPos + 1][(--this->snake.end())->xPos + 1] = BOARD_TYPE::CAN_MOVE;
 			this->snake.pop_back();
 		}
-		else if (this->gameBoardArray[yPos + 2][xPos + 1] == BOARD_TYPE::ITEM)
+		else
 		{
 			this->gameBoardArray[yPos + 2][xPos + 1] = BOARD_TYPE::CAN_MOVE;
 			generateItem();
