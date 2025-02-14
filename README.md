@@ -1,7 +1,11 @@
-# 하드코딩을 보여주겠다
+# 게임프로그래밍 2022 1학기 수업
+<br>
 
-그래도 중간고사는 열심히 제작함 ㄷ
+## SDL 사용법을 익히기 위한 과제
+과제1 - Planegame(Console) <br>
+과제2 - PlaneGame First <br>
+과제3 - PlaneGame Second <br>
+<br>
 
-근데 시간없어서 다시 하드코딩함
-
-새벽에 SnakeGame 만들다가 현타와서 막 짬 저도 어케 짰는지 모를정도
+## SDL과 자료구조에 익숙해지기 위한 과제
+과제4 - SnakeGame
